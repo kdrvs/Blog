@@ -1,0 +1,49 @@
+﻿@model Blog.Models.CommentsListModel;
+@{
+    ViewData["Title"] = "Comments";
+    Layout = "_Console";
+}
+
+<div class="content">
+    
+    <div class=commetns_area>
+
+        @foreach (CommentData c in @Model.Comments)
+        {
+            <div class="comment" id="comment@{@c.CommentId}">
+                <div class="selection link" onclick="document.location.href = '/Blog/Entry/@c.PostId#comment@{@c.CommentId}'">
+                    <a class="selection link" href="/Blog/Entry/@c.PostId#comment@{@c.CommentId}">
+                        <p>@c.PostTopic</p>
+                    </a>
+                </div>
+                <br />
+                <p class="commentId">#@c.CommentId</p>
+                <p class="commentDate">@c.CommentDate.ToString("F")</p>
+                <p class="commentAuthor">@c.CommentAutorName</p>
+                <p class="commentText">@c.CommentText</p>
+
+                <div>
+                    <form action="/Console/ChangeCommentStatus" method="post">
+                        <div hidden="hidden">
+                            <input readonly type="number" name="Id" value="@c.CommentId" />
+                            <input readonly name="Status" value="@c.CommentEnable.ToString()" />
+                        </div>
+                        <div class="send_button">
+                            @if (c.CommentEnable)
+                            {
+                                <input type="submit" name="name" value="Отключить" style="background-color:lightsalmon" />
+                            }
+                            else
+                            {
+                                <input type="submit" name="name" value="Включить" />
+                            }
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="break"></div>
+        }
+    </div>
+
+</div>

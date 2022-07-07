@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Blog</title>
+    <link rel="stylesheet" href="~/css/clear.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <script src="~/js/site.js"></script>
+    <header>
+       
+        <div class="console_header">
+            <a href="/Blog/Index">Блог</a>
+            <a href="/Console/All">Управление</a>
+            <a href="/Console/Comments">Комментарии</a>
+            <a href="/Console/NewPost">Новая запись</a>
+            <a style="float:right" href="/Authentication/LogOut">Выйти</a>
+        </div>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,28 @@
+﻿@model Blog.Models.ConsolePostsListModel;
+@using Blog.Data;
+@{
+    ViewData["Title"] = "Posts";
+    Layout = "_Console";
+}
+
+<div class="content" id="content">
+    <script src="~/js/bb_code.js"></script>
+    <div class="posts_table">
+        @foreach (Post p in @Model.Posts)
+        {
+            <div class="post_line">
+                <p class="topic_name">@p.Topic</p>
+                <div class="topic_line">
+                    <a class="right_item border_1_5" href="/Console/Edit/@p.Id.ToString()/">Редактировать</a>
+                    <p class="right_item">@p.Date.ToString("D")</p>
+                </div>
+                <div class="text_line" id="post@{@p.Id}">@p.Text</div>
+                <script>parse_bb('post@{@p.Id}')</script>
+
+            </div>
+
+<div class="selection"></div>
+            <div class="break"></div>
+        }
+    </div>
+</div>

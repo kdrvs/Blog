@@ -1,0 +1,59 @@
+﻿@model Blog.Models.EntryModel;
+@{
+    ViewData["Title"] = "Entry";
+}
+
+
+<div class="content" id="content">
+    <script src="~/js/bb_code.js"></script>
+    <div class="post">
+        <h1 class="post_title">@Model.Topic</h1>
+        <div class="date_time">
+            <p>@Model.dateTime.ToString("D")</p>
+        </div>
+        <div class="post_content" id="post@{@Model.Id}" hidden="hidden">
+            @Model.Content
+        </div>
+        <script>
+            parse_bb('post@{@Model.Id}')
+        </script>
+    </div>
+
+    <div class="selection"></div>
+    <div class="break"></div>
+
+    <div id="comments" class="commetns_area">
+        <script src="~/js/comments.js"></script>
+        <div hidden="hidden">
+            <p id="PostId">@Model.Id</p>
+        </div>
+
+        <div id="AllComments"></div>
+        <script>
+                getComments(@Model.Id);
+        </script>
+
+
+
+        <div id="newComment" class="new_comment">
+            <div class="new_post_name">
+                <label>Имя</label>
+                <input id="AuthorName" type="text" name="AuthorName" value="Аноним" />
+            </div>
+            <div class="new_comment_text">
+                <div>
+                    <label></label>
+                    <textarea id="CommentContent" name="CommentContent" placeholder="Комментарий"></textarea>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="new_comment_button">
+            <p><input type="submit" value="Комментировать" onclick="saveComment();"></p>
+        </div>
+    </div>
+</div>
+
+
+

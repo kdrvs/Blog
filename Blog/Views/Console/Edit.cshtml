@@ -1,0 +1,59 @@
+﻿@model Blog.Models.EditEntryModel;
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "_Console";
+}
+
+<div class="content">
+    <script src="~/js/bb_code.js"></script>
+    <div class="post">
+        <div>
+            <div>
+                <form action="/Console/Del/@Model.Id.ToString()/">
+                    <div class="send_button">
+                        <input type="submit" name="name" value="Удалить" />
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <form action="/Console/Edit/" method="post">
+            <div hidden="hidden">
+                <label>Id</label>
+                <input type="text" name="Id" value="@Model.Id" />
+            </div>
+            <div class="edit_date">
+                <label>Дата: </label>
+                <input type="datetime" name="Date" value="@Model.Date" />
+
+            </div>
+            <div class="topic">
+                <label></label>
+                <input type="text" name="Title" value="@Model.Title" />
+            </div>
+            <div>
+                <div class="new_post_text_area">
+                    <div class="bb_code">
+                        <div onclick="insert_bb('input_field','p')">[p]</div>
+                        <div onclick="insert_bb('input_field','b')">[b]</div> <!-- high <strong>-->
+                        <div onclick="insert_bb('input_field','i')">[i]</div> <!--coursive <em>-->
+                        <div onclick="insert_bb('input_field','d')">[d]</div> <!--del-->
+                        <div onclick="insert_bb('input_field','??')">[??]</div> <!--spoiler-->
+                        <div onclick="insert_bb('input_field','img')">[img]</div> <!--img-->
+                    </div>
+                    <div style="padding-top:10px">
+                        <label></label>
+                        <textarea id="input_field" name="Text" value="">@Model.Text</textarea>
+
+                    </div>
+                </div>
+            </div>
+            <div class="send_button">
+                <input type="submit" name="name" value="Send" />
+            </div>
+
+
+        </form>
+    </div>
+</div>

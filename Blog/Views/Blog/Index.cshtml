@@ -1,0 +1,58 @@
+﻿@model Blog.Models.PostsListModel
+@using Blog.Data;
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "_Layout";
+}
+
+
+<div class="content" id="content">
+    <script src="~/js/bb_code.js"></script>
+    @foreach ((Post, int) m in Model.GetPosts)
+    {
+        <div class="post">
+
+            <a href='/Blog/Entry/@m.Item1.Id'><h1>@m.Item1.Topic</h1></a>
+
+            <div class="date_time">
+                <p><time datetime="@m.Item1.Date"></time></p>
+                <p>@m.Item1.Date.ToString("D")</p>
+            </div>
+
+            <div class="post_content" id="post@{@m.Item1.Id}" hidden="hidden">
+                @m.Item1.Text
+            </div>
+            <script>parse_bb('post@{@m.Item1.Id}')</script>
+
+
+
+            <div class="selection link" onclick="document.location.href = '/Blog/Entry/@m.Item1.Id#comments'">
+                <a class="selection link" href="/Blog/Entry/@m.Item1.Id#comments">
+                    <p>Комментарии: <b>(@m.Item2)</b> </p>
+                </a>
+            </div>
+            <div class="break"></div>
+        </div>
+    }
+    <div class="other_page">
+
+        @{
+            @if (Model.FirstId > 0)
+            {
+                <div class="other_page_link float_left" onclick="document.location.href = '/Blog/Next/@(Model.FirstId - Model.ListSize)'">
+                    <p>Назад</p>
+                </div>
+            }
+
+            @if (Model.FirstId < Model.Size)
+            {
+                <div class="other_page_link float_right" onclick="document.location.href = '/Blog/Next/@(Model.FirstId + Model.ListSize)'">
+                    <p>Вперёд</p>
+                </div>
+            }
+        }
+
+    </div>
+
+
+</div>
