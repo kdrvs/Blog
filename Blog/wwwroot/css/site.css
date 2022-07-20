@@ -372,3 +372,37 @@ footer {
 .console_header a:hover{
     background-color:#dcdcdc;
 }
+
+.PopUp {
+    background-color: white;
+    border: 3px solid #dcdcdc;
+    margin: 40px;
+    width: 90%;
+    height: 400px;
+    overflow: scroll;
+    position: fixed;
+}
+
+.close {
+    display:inline-block;
+    float:right;
+}
+
+.input_img {
+    display: inline-block;
+    padding: 10px;
+    border: 2px solid #dcdcdc;
+    border-radius:5px;
+    margin:10px;
+}
+
+.input_img:hover{
+    background-color:#dcdcdc;
+}
+
+.media_preview {
+    padding: 10px;
+    display: inline-block;
+    max-width:180px;
+    cursor:pointer;
+}

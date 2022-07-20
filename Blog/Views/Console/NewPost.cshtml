@@ -4,41 +4,64 @@
     Layout = "_Console";
 }
 
-<div class="content">
-    <script src="~/js/bb_code.js"></script>
-    <div class="post">
-        <form action="/Console/NewPost" method="post">
-            <div class="topic">
-                <label>Topic</label>
-                <input type="text" name="Topic" value="@Model.Topic" />
-            </div>
-            <br />
-            <div>
-                <div>
-                    <p>Text</p>
-                </div>
-                <div class="new_post_text_area">
-                    <script src="~/js/bb_code.js"></script>
-                    <div class="bb_code">
-                        <div onclick="insert_bb('input_field','p')">[p]</div>
-                        <div onclick="insert_bb('input_field','b')">[b]</div> <!-- high <strong>-->
-                        <div onclick="insert_bb('input_field','i')">[i]</div> <!--coursive <em>-->
-                        <div onclick="insert_bb('input_field','d')">[d]</div> <!--del-->
-                        <div onclick="insert_bb('input_field','??')">[??]</div> <!--spoiler-->
-                        <div onclick="insert_bb('input_field','img')">[img]</div> <!--img-->
-                    </div>
-                    <div style="padding-top:10px">
-                        <label></label>
-                        <textarea id="input_field" name="Text" value="@Model.Text"></textarea>
 
+<div>
+    <script src="~/js/mediaservice.js"></script>
+    <div class="PopUp" id="PopUp_Images" hidden>
+        <button class="close" onclick="close_images_popUp()">X</button>
+        <div>
+            <div class="input_img">
+                <input id="new_file" type="file" name="File" accept="image/*,image/jpeg" />
+            </div>
+            <div class="input_img">
+                <input type="submit" name="Отправить" onclick="save_image()" />
+            </div>
+
+        </div>
+        <div id="images_list">
+
+        </div>
+
+    </div>
+    <div class="content">
+
+        <script src="~/js/bb_code.js"></script>
+
+        <div class="post">
+            <form action="/Console/NewPost" method="post">
+                <div class="topic">
+                    <label>Topic</label>
+                    <input type="text" name="Topic" value="@Model.Topic" />
+                </div>
+                <br />
+                <div>
+                    <div>
+                        <p>Text</p>
+                    </div>
+                    <div class="new_post_text_area">
+                        <div class="bb_code">
+                            <div onclick="insert_bb('input_field','p')">[p]</div>
+                            <div onclick="insert_bb('input_field','b')">[b]</div> <!-- high <strong>-->
+                            <div onclick="insert_bb('input_field','i')">[i]</div> <!--coursive <em>-->
+                            <div onclick="insert_bb('input_field','d')">[d]</div> <!--del-->
+                            <div onclick="insert_bb('input_field','??')">[??]</div> <!--spoiler-->
+                            <div onclick="insert_bb('input_field','img')">[img]</div> <!--img-->
+                            <div onclick="images_popUp()">[+ img]</div>
+                        </div>
+                        <div style="padding-top:10px">
+                            <label></label>
+                            <textarea id="input_field" name="Text" value="@Model.Text"></textarea>
+
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="send_button">
-                <input type="submit" name="name" value="Send" />
-            </div>
-        </form>
-        <div class="selection"></div>
-        <div class="break"></div>
+                <div class="send_button">
+                    <input type="submit" name="name" value="Send" />
+                </div>
+            </form>
+            <div class="selection"></div>
+            <div class="break"></div>
+        </div>
     </div>
+
 </div>
