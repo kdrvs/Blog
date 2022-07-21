@@ -10,6 +10,7 @@ namespace Blog.Controllers
 {
     public class AuthenticationController: Controller
     {
+
         [HttpGet]
         public IActionResult LogIn()
         {
@@ -19,14 +20,15 @@ namespace Blog.Controllers
         [HttpPost]
         public async Task<IActionResult> LogIn(string password)
         {
+            
             if (await Settings.checkPassword(password))
             {
+
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Role, "Admin"),
 
                 };
-
                 var userIdentity = new ClaimsIdentity(claims, "login");
                 var principal = new ClaimsPrincipal(userIdentity);
                 await HttpContext.SignInAsync(principal);
@@ -41,7 +43,6 @@ namespace Blog.Controllers
             await HttpContext.SignOutAsync();
             return RedirectToAction("Index", "Blog");
         }
-
 
     }
 }

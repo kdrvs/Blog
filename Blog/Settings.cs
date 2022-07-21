@@ -49,7 +49,7 @@ namespace Blog
 
         private static string getHash(string _password)
         {
-            byte[] arr = Encoding.ASCII.GetBytes("1Z20f45e");
+            byte[] arr = Encoding.ASCII.GetBytes("1Z20f45e"); //to settings
             string hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
                 password: _password,
                 salt: arr,

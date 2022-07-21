@@ -78,7 +78,7 @@ namespace Blog.Controllers
 
         [Authorize]
         public IActionResult NewPost()
-        {
+        {          
             return View(new NewEntryModel());
         }
 

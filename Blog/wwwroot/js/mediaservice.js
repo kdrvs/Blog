@@ -17,11 +17,16 @@ function close_images_popUp() {
 
 async function get_media() {
 
-    let res = await fetch(url, {
-        method: 'GET'
-    });
-
-    return await res.json();
+    try {
+        let res = await fetch(url, {
+            method: 'GET'
+        });
+        return await res.json();
+    }
+    catch {
+        fetch_message('Ошибка, попробуйте ещё раз.');
+    }
+    
 }
 
 async function save_image() {
@@ -31,11 +36,11 @@ async function save_image() {
 
     await fetch(url, {
         method: 'POST',
-        //headers: { 'Content-type': 'multipart/form-data' },
         body: data
     }).then(function (response) {
         if (response.status !== 200) {
             console.log('Bad status: ' + response.status);
+            fetch_message('Ошибка сервера, попробуйте ещё раз.');
             return;
         }
         response.json().then(function (status) {
@@ -44,6 +49,7 @@ async function save_image() {
         });
     }).catch(function (err) {
         console.log('Fetch Error: -S', err);
+        fetch_message('Ошибка, попробуйте ещё раз.');
     });
     await render_images();
 }
@@ -72,4 +78,10 @@ function select_image(filepath) {
     let text = text_area.value.substring(0, start_carriage) + "[img]" + filepath + "[/img]" + text_area.value.substring(start_carriage);
     text_area.value = text;
     close_images_popUp();
+}
+
+function fetch_message(text) {
+    doc = document.getElementById('fetch_message');
+    doc.innerText = text;
+    doc.hidden = false;
 }

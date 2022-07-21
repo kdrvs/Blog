@@ -1,5 +1,48 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-for details on configuring this project to bundle and minify static web assets. */
+﻿
+:root {
+    --content-margin-left: 200px;
+    --content-margin-right: 200px;
+    --content-margin-top: 60px;
+    --comments-area-padding: 100px;
+}
+
+@media screen and (max-width: 1280px) {
+    :root {
+        --content-margin-left: 200px;
+        --content-margin-right: 200px;
+        --content-margin-top: 60px;
+        --comments-area-padding: 100px;
+    }
+}
+
+@media screen and (max-width: 980px) {
+    :root {
+        --content-margin-left: 150px;
+        --content-margin-right: 150px;
+        --content-margin-top: 40px;
+        --comments-area-padding: 100px;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    :root {
+        --content-margin-left: 20px;
+        --content-margin-right: 20px;
+        --content-margin-top: 40px;
+        --comments-area-padding: 0px;
+    }
+}
+
+@media screen and (max-width: 479px) {
+    :root {
+        --content-margin-left: 10px;
+        --content-margin-right: 10px;
+        --content-margin-top: 30px;
+        --comments-area-padding: 0px;
+    }
+}
+
+
 
 html {
     font: 18px Courier, Tahoma, sans-serif;
@@ -7,9 +50,9 @@ html {
 }
 
 .content {
-    margin-left:200px;
-    margin-right:200px;
-    margin-top:60px;
+    margin-left: var(--content-margin-left);
+    margin-right:var(--content-margin-right);
+    margin-top:var(--content-margin-top);
     
 }
 
@@ -26,6 +69,8 @@ html {
     color:black;
     text-align: center;
     cursor: pointer;
+    overflow: visible;
+    word-wrap:break-word;
 }
 
 .post_title {
@@ -38,6 +83,7 @@ html {
     text-align: right;
     color: #424242;
     font: 12px Courier, Tahoma, sans-serif;
+    padding-top:20px;
 }
 
 .post_content {
@@ -48,7 +94,7 @@ html {
 
 .commetns_area {
     margin-top: 50px;
-    padding:100px;
+    padding:var(--comments-area-padding);
     margin-left: 20px;
     margin-top: 20px;
 }
@@ -70,6 +116,7 @@ html {
     text-decoration: none;
     color:black;
 }
+
 
 
 .break {
@@ -276,7 +323,11 @@ footer {
     margin-top:10px;
     margin-bottom:10px;
     padding:20px;
-    overflow:hidden;
+}
+
+.post_line p {
+    overflow: visible;
+    word-wrap:break-word;
 }
 
 .topic_line {

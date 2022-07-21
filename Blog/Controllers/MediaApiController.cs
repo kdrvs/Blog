@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.IO;
 using Microsoft.AspNetCore.Http;
 using System.Runtime.Serialization.Formatters.Binary;
-
+using Microsoft.AspNetCore.Authorization;
 
 namespace Blog.Controllers
 {
@@ -25,6 +25,7 @@ namespace Blog.Controllers
             return filesName;
         }
 
+        [Authorize(Roles ="Admin")]
         [HttpPost]
         public async Task<bool> Post(IFormFile iForm)
         {
@@ -44,7 +45,7 @@ namespace Blog.Controllers
 
                 status = true;
             }
-            catch(Exception e)
+            catch
             {
                 status = false;
             }

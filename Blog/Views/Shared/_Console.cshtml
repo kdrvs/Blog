@@ -6,18 +6,21 @@
     <title>@ViewData["Title"] - Blog</title>
     <link rel="stylesheet" href="~/css/clear.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/checkbox.css" />
 </head>
 <body>
-    <script src="~/js/site.js"></script>
     <header>
-       
-        <div class="console_header">
-            <a href="/Blog/Index">Блог</a>
-            <a href="/Console/All">Управление</a>
-            <a href="/Console/Comments">Комментарии</a>
-            <a href="/Console/NewPost">Новая запись</a>
-            <a style="float:right" href="/Authentication/LogOut">Выйти</a>
-        </div>
+        <nav>
+            <label for="checkbox" class="menuToogle">Меню</label>
+            <input type="checkbox" id="checkbox" name="checkbox">
+            <ul class="navigation clearfix">
+                <li><a class="nodecoration" href="/Blog/Index">Блог</a></li>
+                <li><a class="nodecoration" href="/Console/All">Управление</a></li>
+                <li><a class="nodecoration" href="/Console/Comments">Комментарии</a></li>
+                <li><a class="nodecoration" href="/Console/NewPost">Новая запись</a></li>
+                <li style="float:right"><a class="nodecoration" href="/Authentication/LogOut">Выйти</a></li>
+            </ul>
+        </nav>
     </header>
     <div class="container">
         <main role="main" class="pb-3">
