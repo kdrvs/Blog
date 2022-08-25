@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
 
@@ -24,11 +23,6 @@ namespace Blog
             services.AddControllersWithViews();
             services.AddControllers();
 
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "ApiTest", Version = "v1" });
-            });
-
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options =>
                 {
@@ -41,8 +35,6 @@ namespace Blog
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ApiTest v1"));
             }
             else
             {
@@ -61,13 +53,8 @@ namespace Blog
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Blog}/{action=Index}/{id?}");
-                endpoints.MapControllerRoute(
-                    "BlogDetails",
-                    "Blog/Next/{id}",
-                    new { controller = "Blog", action = "Next" }
+                    pattern: "{controller=blog}/{action=index}/{id?}"
                     );
-                endpoints.MapControllers();
             });
 
            

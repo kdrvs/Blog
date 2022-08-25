@@ -11,11 +11,9 @@ namespace Blog.Models
     public class PostsListModel
     {
         public List<(Post, int)> GetPosts { get; private set; }
-        public int FirstId { get; set; }
-        public int ListSize = 10;
-        public int Size { get; private set; }
+        public int DBSize { get; private set; }
 
-        public async Task<bool> queryPosts()
+        public async Task<bool> queryPosts(int skip, int select)
         {
             this.GetPosts = new List<(Post, int)>();
             bool status = false;
@@ -23,24 +21,24 @@ namespace Blog.Models
             {
                 using (DataBaseContext dbContext = new DataBaseContext())
                 {
-                    var posts = await dbContext.Posts.OrderByDescending(b => b.Date).Skip(FirstId).Take(ListSize).ToListAsync();
+                    var posts = await dbContext.Posts.OrderByDescending(b => b.Date).Skip(skip).Take(select).ToListAsync();
                     var _size = await dbContext.Posts.CountAsync();
-                    if(posts!= null || posts.Count != 0)
+                    if (posts != null || posts.Count != 0)
                     {
-                        foreach(Post p in posts)
+                        foreach (Post p in posts)
                         {
                             try
                             {
                                 int _commentsCount;
                                 _commentsCount = await dbContext.Comments.Where(c => c.PostId == p.Id).Where(c => c.Enable == true).CountAsync();
                                 this.GetPosts.Add((p, _commentsCount));
-                                this.Size = _size;
+                                this.DBSize = _size;
                             }
                             catch
                             {
                                 this.GetPosts.Add((p, 0));
                             }
-                           
+
                         }
 
                         status = true;
@@ -55,7 +53,7 @@ namespace Blog.Models
             }
 
             return status;
-            
+
         }
 
     }

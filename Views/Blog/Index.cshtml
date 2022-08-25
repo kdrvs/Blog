@@ -37,22 +37,25 @@
     <div class="other_page">
 
         @{
-            @if (Model.FirstId > 0)
+            @if (@ViewBag.Previous >= 0)
             {
-                <div class="other_page_link float_left" onclick="document.location.href = '/Blog/Next/@(Model.FirstId - Model.ListSize)'">
+                <div class="other_page_link float_left" onclick="document.location.href = '/Blog/Index?page=@ViewBag.Previous'">
                     <p>Назад</p>
                 </div>
             }
 
-            @if (Model.FirstId < Model.Size)
+            @if (@ViewBag.Next > 0)
             {
-                <div class="other_page_link float_right" onclick="document.location.href = '/Blog/Next/@(Model.FirstId + Model.ListSize)'">
+                <div class="other_page_link float_right" onclick="document.location.href = '/Blog/Index?page=@ViewBag.Next'">
                     <p>Вперёд</p>
                 </div>
             }
         }
 
     </div>
+    <footer>
+
+    </footer>
 
 
 </div>

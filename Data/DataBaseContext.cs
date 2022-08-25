@@ -11,8 +11,8 @@ namespace Blog.Data
     {
         private string connectionString = Settings.ConnectionString;
 
-        public DbSet<Post> Posts { get; set; }
-        public DbSet<Comment> Comments { get; set; }
+        public DbSet<Post>? Posts { get; set; }
+        public DbSet<Comment>? Comments { get; set; }
 
         
 

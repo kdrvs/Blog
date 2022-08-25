@@ -24,7 +24,7 @@ namespace Blog.Controllers
             var filesName = filesInfo.Select(f => f.Name).OrderByDescending(t => t).ToList();
             return filesName;
         }
-
+        
         [Authorize(Roles ="Admin")]
         [HttpPost]
         public async Task<bool> Post(IFormFile iForm)

@@ -23,24 +23,26 @@ namespace Blog.Controllers
         {
             int _page;
             int.TryParse(page, out _page);
-            if (_page < 0) _page = 0;
             var model = new PostsListModel();
-            model.FirstId = _page;
-            await model.queryPosts();
+            var skip = _page * 7;
+            var select = 7;
+            await model.queryPosts(skip, select);
+
+            int nextPage = 0;
+            if(model.DBSize > skip + select)
+            {
+                nextPage = _page + 1;
+            }
+            ViewBag.Next = nextPage;
+
+            int prevPage = _page - 1;
+            ViewBag.Previous = prevPage;
+
             return View(model);
         }
 
-        
-        public async Task<IActionResult> Next(string id)
-        {
-            int _page;
-            int.TryParse(id, out _page);
-            if (_page < 0) _page = 0;
-            var model = new PostsListModel();
-            model.FirstId = _page;
-            await model.queryPosts();
-            return View("Index", model);
-        }
+        [HttpGet]
+       
 
         [HttpGet]
         public async Task<IActionResult> Entry(string id)
